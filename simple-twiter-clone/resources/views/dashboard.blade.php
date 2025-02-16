@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Twitter Clone - Dashboard</title>
+@extends('layout.layout')
 
-        <!-- Styles / Scripts -->
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @else
-      
-        @endif
-        
-    </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white bg-gray-100 text-gray-900 ">
-        @include('layout.navbar')
-
+@section("content")
         <!-- Main Wrapper -->
         <div class="flex flex-col md:flex-row">
 
@@ -48,41 +33,18 @@
 
                 <!-- Tweets Feed -->
                 <div class="space-y-4">
-                    <!-- Example Tweet 1 -->
-                    <div class="bg-white p-4 rounded-lg shadow-md">
-                        <div class="flex items-center space-x-4">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" class="w-10 h-10 rounded-full">
-                            <div>
-                                <h3 class="font-semibold">John Doe</h3>
-                                <p class="text-sm text-gray-500">2 hours ago</p>
-                            </div>
-                        </div>
-                        <p class="mt-2">This is an example tweet content. Look at how elegant the design looks!</p>
-                    </div>
 
-                    <!-- Example Tweet 2 -->
+                    @foreach ( $tweets as $tweet)
                     <div class="bg-white p-4 rounded-lg shadow-md">
-                        <div class="flex items-center space-x-4">
-                            <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="User Avatar" class="w-10 h-10 rounded-full">
-                            <div>
-                                <h3 class="font-semibold">Jane Smith</h3>
-                                <p class="text-sm text-gray-500">5 hours ago</p>
-                            </div>
-                        </div>
-                        <p class="mt-2">Here's another tweet, just an example of how the feed works.</p>
-                    </div>
+                      
+                        <p class="mt-2">{{$tweet->content}}</p>
+                        <p class="mt-2">{{$tweet->likes}}</p>
+                        <p class="mt-2">{{$tweet->created_at}}</p>
 
-                    <!-- Example Tweet 3 -->
-                    <div class="bg-white p-4 rounded-lg shadow-md">
-                        <div class="flex items-center space-x-4">
-                            <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="User Avatar" class="w-10 h-10 rounded-full">
-                            <div>
-                                <h3 class="font-semibold">Alice Johnson</h3>
-                                <p class="text-sm text-gray-500">8 hours ago</p>
-                            </div>
-                        </div>
-                        <p class="mt-2">This is a sample tweet to show the layout and style. It feels quite smooth, right?</p>
                     </div>
+                    @endforeach
+
+                  
                 </div>
             </div>
 
@@ -116,5 +78,4 @@
             </div>
         </div>
 
-    </body>
-</html>
+        @endsection

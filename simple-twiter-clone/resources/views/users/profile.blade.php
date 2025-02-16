@@ -1,1 +1,5 @@
-<h1>profile</h1>
+@extends('layout.layout')
+
+@section("content")
+<h1>hello this is profile page</h1>
+@endsection
