@@ -16,4 +16,9 @@ class Tweet extends Model
         'likes',
     ];
 
+    protected $attributes = [
+        'content' => 'No content available',
+        'likes' => 0,
+    ];
+
 }

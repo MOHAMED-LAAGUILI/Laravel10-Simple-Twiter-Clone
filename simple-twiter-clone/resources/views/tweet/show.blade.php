@@ -25,21 +25,12 @@
 
       <!-- Center Feed -->
 <div class="flex-1 p-6 min-w-[40%]">
-    @include('shared.success_message')
-    @include('shared.error_message')
-
-    @include('shared.submit_tweet')
-
+ 
     <!-- Tweets Feed -->
     <div class="space-y-4">
-        @foreach ($tweets as $tweet)
             @include('shared.tweet_card')
-        @endforeach
 
-        <!-- Refined Pagination -->
-        <div class="mt-4 flex justify-center">
-            {{$tweets->links()}}
-        </div>
+     
     </div>
 </div>
 

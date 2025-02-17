@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tweets', function (Blueprint $table) {
             $table->id();
-            $table->text('content'); // Stores tweet text
+            $table->string('content', 280)->default('No content available');
             $table->unsignedInteger('likes')->default(0); // Like count
             $table->timestamps();
         });

@@ -12,12 +12,15 @@
     @else
     @endif
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white bg-gray-100 text-gray-900 ">
     @include('layout.navbar') <!-- Add this line -->
-
+<div class="mt-[50px]">
     @yield('content')
+</div>
 
     @include('layout.footer') <!-- Add this line -->
 </body>

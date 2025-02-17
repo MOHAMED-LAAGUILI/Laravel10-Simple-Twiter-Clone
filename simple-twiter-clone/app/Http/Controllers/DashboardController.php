@@ -13,14 +13,8 @@ class DashboardController extends Controller
     {
 
     
-      /*  $tweet = new Tweet([
-            [ 'content'=> 'test1', 'likes'=> 1 ],
-            [ 'content'=> 'test2', 'likes'=> 2 ]
-         ]);         
-
-$tweet->save();
-*/
-        return view("dashboard",['tweets' => Tweet::orderBy("created_at", "DESC")->get()]);
+   
+        return view("dashboard",['tweets' => Tweet::orderBy("created_at", "DESC")->paginate(5)]);
 
     }
 
