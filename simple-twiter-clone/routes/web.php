@@ -8,6 +8,9 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::post('/tweet', [TweetController::class, 'store'])->name("tweet.create");
 Route::get('/tweet/{id}', [TweetController::class, 'show'])->name("tweet.show");
+Route::get('/tweet/{id}/edit', [TweetController::class, 'show'])->name("tweet.edit");
+Route::put('/tweet/{tweet}', [TweetController::class, 'update'])->name('tweet.update');
+
 Route::delete('/tweet/{id}', [TweetController::class, 'destroy'])->name("tweet.destroy");
 
 

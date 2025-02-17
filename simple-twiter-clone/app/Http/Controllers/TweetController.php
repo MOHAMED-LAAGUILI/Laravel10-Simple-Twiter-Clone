@@ -41,10 +41,26 @@ class TweetController extends Controller
         return redirect()->route('dashboard')->with('success', 'Tweet Deleted!');
     }
 
-
     public function show(Tweet $id)
     {
-        return view("tweet.show", ["tweet" => $id]);
-        
+        // Check if the route is an edit view or not
+        $editing = request()->routeIs('tweet.edit');
+        return view("tweet.show", ["tweet" => $id, "editing" => $editing]);
+    }
+
+
+    public function update(Tweet $tweet)
+    {
+
+
+        // Validate the content
+        request()->validate([
+            'content' => 'required|string|max:280|min:5', // Add your validation rules here
+        ]);
+
+        $tweet->content = request()->get('content', '');
+        $tweet->save();
+
+        return redirect()->route('tweet.show', $tweet->id)->with('success', 'Tweet updated!');
     }
 }
