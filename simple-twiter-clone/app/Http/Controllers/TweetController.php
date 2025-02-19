@@ -3,64 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tweet;
-use Illuminate\Http\Request;
 
 class TweetController extends Controller
 {
-    public function store(Request $request)
+    public function store(Tweet $tweet)
     {
         // Validate the content
-        $validated = $request->validate([
-            'content' => 'required|string|max:280|min:5', // Add your validation rules here
+        $validated = request()->validate([
+            'content' => 'required|max:280|min:5', // Add your validation rules here
         ]);
 
-        // Check if validation was successful, if any errors are present
-        if ($validated) {
-            // Validation passed, save the tweet
-            $tweet = new Tweet();
-            $tweet->content = $request->content; // Use 'content' which matches the textarea name
-            $tweet->likes = 0; // Default likes
-            $tweet->save();
+        $tweet->create( $validated );
 
-            return redirect()->route('dashboard')->with('success', 'Tweet posted!');
-        }
-
-        // If validation fails, return errors and input
-        return redirect()->back()->withErrors($validated)->withInput();
+         return redirect()->route('dashboard')->with('success', 'Tweet posted!');
     }
 
-    public function destroy(Tweet $id)
+    public function destroy(Tweet $tweet)
     {
-        // Find the tweet by ID and Delete the tweet ($id)
-        //  $tweet = Tweet::where('id',$id)->firstOrFail()->delete();
-
-        // shorter way whene added Tweet In params (Tweet $id)
-        $id->delete();
-
+        $tweet->delete();
         // redirect
         return redirect()->route('dashboard')->with('success', 'Tweet Deleted!');
     }
 
-    public function show(Tweet $id)
+    public function show(Tweet $tweet)
     {
         // Check if the route is an edit view or not
         $editing = request()->routeIs('tweet.edit');
-        return view("tweet.show", ["tweet" => $id, "editing" => $editing]);
+        return view("tweet.show", ["tweet" => $tweet, "editing" => $editing]);
     }
 
 
     public function update(Tweet $tweet)
     {
-
-
         // Validate the content
-        request()->validate([
+        $validated = request()->validate([
             'content' => 'required|string|max:280|min:5', // Add your validation rules here
         ]);
 
-        $tweet->content = request()->get('content', '');
-        $tweet->save();
-
+        $tweet->update($validated);
+        
         return redirect()->route('tweet.show', $tweet->id)->with('success', 'Tweet updated!');
     }
 }

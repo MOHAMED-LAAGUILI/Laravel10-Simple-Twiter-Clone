@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tweet extends Model
+class Comment extends Model
 {
+    /** @use HasFactory<\Database\Factories\CommentFactory> */
     use HasFactory;
 
     // Define the database table associated with this model
-    protected $table = 'tweets';
+    protected $table = 'comments';
 
     // Prevents these fields from being mass-assigned
     protected $guarded = [
@@ -21,22 +22,16 @@ class Tweet extends Model
 
     // Specifies the fields that can be mass-assigned
     protected $fillable = [
-        'content', // Stores the tweet's text
-        'likes',   // Stores the number of likes
-    ];
-
-    // Default attribute values if not provided
-    protected $attributes = [
-        'content' => 'No content available', // Default tweet content
-        'likes' => 0, // Default likes count
+        'tweet_id', // The ID of the associated tweet
+        'content',  // The comment content
     ];
 
     /**
-     * Define a one-to-many relationship with the Comment model.
-     * A tweet can have multiple comments.
+     * Define a many-to-one relationship with the Tweet model.
+     * Each comment belongs to a single tweet.
      */
-    public function comments()
+    public function tweet()
     {
-        return $this->hasMany(Comment::class, "tweet_id", "id");
+        return $this->belongsTo(Tweet::class, 'tweet_id', 'id');
     }
 }
