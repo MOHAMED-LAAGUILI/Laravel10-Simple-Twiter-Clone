@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TweetController;
@@ -16,6 +17,10 @@ Route::delete('/tweet/{tweet}', [TweetController::class, 'destroy'])->name("twee
 
 Route::post('/tweets/{tweet}/comments', [CommentController::class, 'store'])->name('tweet.comments.store');
 
+
+Route::get('/register',[AuthController::class, 'register'])->name('register.show');
+Route::post('/register',[AuthController::class, 'store'])->name('register.store');
+Route::get('/login',[AuthController::class, 'login'])->name('login.show');
 
 
 

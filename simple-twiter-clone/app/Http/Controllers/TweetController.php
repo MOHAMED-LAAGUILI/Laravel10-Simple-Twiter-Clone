@@ -21,7 +21,6 @@ class TweetController extends Controller
     public function destroy(Tweet $tweet)
     {
         $tweet->delete();
-        // redirect
         return redirect()->route('dashboard')->with('success', 'Tweet Deleted!');
     }
 

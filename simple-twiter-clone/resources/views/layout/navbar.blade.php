@@ -1,6 +1,7 @@
 
+<!--
 <div class="h-full w-full">
-    <!-- Code block starts -->
+  
     <nav class="w-full bg-white hidden xl:block shadow">
         <div class="container px-6 h-16 flex justify-between items-center lg:items-stretch mx-auto">
             <div class="flex items-center">
@@ -199,7 +200,7 @@
             </div>
         </div>
     </nav>
-    <!-- Navbar -->
+      
     <nav>
         <div class="py-4 px-6 w-full flex xl:hidden justify-between items-center bg-white fixed top-0 z-40">
             <div class="w-24">
@@ -223,7 +224,7 @@
                 </div>
             </div>
         </div>
-        <!--Mobile responsive sidebar-->
+
         <div class="absolute w-full h-full transform -translate-x-full z-40 xl:hidden" id="mobile-nav">
             <div class="bg-gray-800 opacity-50 w-full h-full" onclick="sidebarHandler(false)"></div>
             <div class="w-64 z-40 fixed overflow-y-auto z-40 top-0 bg-white shadow h-full flex-col justify-between xl:hidden pb-4 transition duration-150 ease-in-out">
@@ -362,10 +363,8 @@
             </div>
         </div>
     </nav>
-    <!-- Sidebar ends -->
 
     
-    <!-- Code block ends -->
 </div>
 
 <script>
@@ -408,8 +407,7 @@ const sidebarHandler = (check) => {
 };
 
 </script>
-
-
+-->
 
 <nav class="bg-gray-900">
     <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -472,7 +470,7 @@ const sidebarHandler = (check) => {
                                 <li><a href="/" aria-label="Product pricing" title="Product pricing" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">Pricing</a></li>
                                 <li><a href="/" aria-label="About us" title="About us" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">About us</a></li>
                                 <li>
-                                    <a href="/" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-700 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none" aria-label="Sign up" title="Sign up">Sign up</a>
+                                    <a href="{{route('register.show')}}" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-700 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none" aria-label="Sign up" title="Sign up">Sign up</a>
                                 </li>
                             </ul>
                         </nav>
