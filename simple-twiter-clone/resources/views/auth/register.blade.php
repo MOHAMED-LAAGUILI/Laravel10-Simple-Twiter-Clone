@@ -52,7 +52,7 @@
 
             <p class="mt-4 text-center text-sm text-white">
                 Already have an account?
-                <a href="#" class="text-indigo-400 hover:text-indigo-300 transition-all duration-200">Login</a>
+                <a href="{{route('login.show')}}" class="text-indigo-400 hover:text-indigo-300 transition-all duration-200">Login</a>
             </p>
         </div>
     </section>

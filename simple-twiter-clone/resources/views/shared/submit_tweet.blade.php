@@ -1,5 +1,6 @@
-<!-- Create Tweet -->
-<form class="bg-gray-800 p-6 rounded-lg shadow-md mb-6" method="post" action='{{ route("tweet.create") }}'>
+@auth
+    <!-- Create Tweet -->
+<form class="bg-gray-800 p-6 rounded-lg shadow-md mb-6" method="post" action='{{ route("tweet.store") }}'>
     @csrf
     <textarea 
         name="content" 
@@ -9,3 +10,8 @@
     ></textarea>
     <button class="mt-4 w-full bg-blue-500 text-white font-bold py-2 rounded-lg hover:bg-blue-600">Tweet</button>
 </form>
+
+@endauth
+@guest
+    login to share ur tweet
+@endguest

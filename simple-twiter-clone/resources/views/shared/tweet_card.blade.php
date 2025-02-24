@@ -3,12 +3,12 @@
 
     <!-- Profile Picture and User Info -->
     <div class="flex items-center space-x-4">
-        <img src="https://randomuser.me/api/portraits/men/50.jpg" class="w-14 h-14 rounded-full border-2 border-gray-600"
+        <img src="https://api.dicebear.com/9.x/adventurer/svg?seed={{$tweet->user->name}}" class="w-14 h-14 rounded-full border-2 border-gray-600"
             alt="User">
 
         <div>
-            <h4 class="font-bold text-gray-200 truncate">User Name</h4>
-            <span class="text-gray-400 text-sm">@username · {{ $tweet->created_at->diffForHumans() }}</span>
+            <h4 class="font-bold text-gray-200 truncate">{{$tweet->user->name}}</h4>
+            <span class="text-gray-400 text-sm">{{'@'.$tweet->user->name}} · {{ $tweet->created_at->diffForHumans() }}</span>
         </div>
     </div>
 
@@ -74,7 +74,9 @@
         <h5 class="text-gray-400 text-sm mb-2">Comments:</h5>
         @foreach ($tweet->comments as $comment)
         <div class="text-gray-300 text-sm mb-2">
-            {{ $comment->created_at }} - {{ $comment->content }}
+            {{ $comment->created_at }} 
+            <br>
+            {{$tweet->user->name}}: {{ $comment->content }}
         </div>
     @endforeach
     

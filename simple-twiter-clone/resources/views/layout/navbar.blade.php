@@ -428,9 +428,25 @@ const sidebarHandler = (check) => {
                 <li><a href="/" aria-label="About us" title="About us" class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400">About us</a></li>
             </ul>
             <ul class="flex items-center hidden space-x-8 lg:flex">
+                @guest
                 <li>
-                    <a href="/" class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none" aria-label="Sign up" title="Sign up">Sign up</a>
+                    <a href="{{route('register.show')}}" class="px-5 py-2 text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-800 transition">Sign up</a>
                 </li>
+                @endguest
+                @auth
+                <li>
+                    <a href="#" class="text-gray-300 hover:text-teal-400 transition">Profile</a>
+                </li>
+                <li>
+                    <form method="post" action="{{route('logout')}}" class="block py-2 transition">
+                        @csrf
+                        <button type="submit">
+                            logout
+                        </button>
+                    </form>
+                </li>
+                @endauth
+
             </ul>
             <!-- Mobile menu -->
             <div class="lg:hidden">
@@ -469,9 +485,28 @@ const sidebarHandler = (check) => {
                                 <li><a href="/" aria-label="Our product" title="Our product" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">Features</a></li>
                                 <li><a href="/" aria-label="Product pricing" title="Product pricing" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">Pricing</a></li>
                                 <li><a href="/" aria-label="About us" title="About us" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">About us</a></li>
+                                @auth
+                                <li><a href="#" class="block py-2 transition">{{Auth::user()->name}}</a></li>
                                 <li>
-                                    <a href="{{route('register.show')}}" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-700 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none" aria-label="Sign up" title="Sign up">Sign up</a>
+                                <form method="post" action="{{route('logout')}}" class="block py-2 transition">
+                                    @csrf
+                                    <button type="submit">
+                                        logout
+                                    </button>
+                                </form>
+                            </li>
+
+                                @endauth
+            
+                                @guest
+                                <li>
+                                    <a href="{{route('register.show')}}" class="block py-2 text-white bg-blue-700 rounded-lg hover:bg-blue-800 transition">Sign up</a>
                                 </li>
+                                <li>
+                                    <a href="{{route('login.show')}}" class="block py-2 text-white bg-blue-700 rounded-lg hover:bg-blue-800 transition">Login</a>
+                                </li>
+                                @endguest
+
                             </ul>
                         </nav>
                     </div>

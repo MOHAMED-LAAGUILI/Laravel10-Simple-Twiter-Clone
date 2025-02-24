@@ -22,16 +22,20 @@ class Comment extends Model
 
     // Specifies the fields that can be mass-assigned
     protected $fillable = [
+        'user_id',
         'tweet_id', // The ID of the associated tweet
         'content',  // The comment content
     ];
 
-    /**
-     * Define a many-to-one relationship with the Tweet model.
-     * Each comment belongs to a single tweet.
-     */
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function tweet()
     {
-        return $this->belongsTo(Tweet::class, 'tweet_id', 'id');
+        return $this->belongsTo(Tweet::class);
     }
 }
+

@@ -1,35 +1,32 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TweetController;
 use Illuminate\Support\Facades\Route;
 
+
+//Dashboard route
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::post('/tweet', [TweetController::class, 'store'])->name("tweet.create");
-Route::get('/tweet/{tweet}', [TweetController::class, 'show'])->name("tweet.show");
-Route::get('/tweet/{tweet}/edit', [TweetController::class, 'show'])->name("tweet.edit");
-Route::put('/tweet/{tweet}', [TweetController::class, 'update'])->name('tweet.update');
 
-Route::delete('/tweet/{tweet}', [TweetController::class, 'destroy'])->name("tweet.destroy");
+// Auth Routes
+require __DIR__.'/auth.php';
 
-Route::post('/tweets/{tweet}/comments', [CommentController::class, 'store'])->name('tweet.comments.store');
+// user Routes
 
+require __DIR__.'/user.php';
 
-Route::get('/register',[AuthController::class, 'register'])->name('register.show');
-Route::post('/register',[AuthController::class, 'store'])->name('register.store');
-Route::get('/login',[AuthController::class, 'login'])->name('login.show');
+//Tweet & comment Routes
+require __DIR__.'/tweet.php';
 
-
-
-
+// Static Pages Route
 Route::get('/terms', function () {
-    return view('terms'); 
+    return view('terms');
 });
 
-// Fallback route for 404
+// Fallback route for 404 Error Page
 Route::fallback(function () {
-    return response()->view('errors.404', [], 404);
+    return response()->view('errors.404', [], 404); // Use an empty array instead of an empty string
 });
+

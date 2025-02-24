@@ -10,9 +10,6 @@ use Hash;
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
 
     public function register()
@@ -23,22 +20,27 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
-    public function index(User $user)
+    public function authentication()
     {
-        //
+        // Validate input
+        $validated = request()->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8|max:20'
+        ]);
+    
+        // Attempt login
+        if (auth()->attempt($validated)) {
+            request()->session()->regenerate();
+            return redirect()->route('dashboard')->with('success', 'Login successfully!');
+        }
+    
+        return redirect()->route('login.show')->withErrors([
+            'email' => 'Email or password is incorrect',
+        ]);
     }
+    
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(User $user)
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(User $user)
     {
         // Validate input
@@ -56,35 +58,15 @@ class AuthController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
+
+    public function logout(User $user)
     {
-        //
+        auth()->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('login.show')->with('success', 'logout successfully!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
 }

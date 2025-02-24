@@ -14,28 +14,9 @@
         <div class="flex-1 p-6 min-w-[50%]">
             @include('shared.Alert_Message')
 
-            @include('shared.submit_tweet')
 
-            <!-- Tweets Feed -->
-            <div class="space-y-4">
-                <hr>
+            Edit
 
-                @forelse ($tweets as $tweet)
-                    @include('shared.Tweet_Card')
-
-                  
-                @empty
-                    <p class="text-lg text-gray-400">No tweets found</p>
-                @endforelse
-
-  <!-- Refined Pagination -->
-  <div class="mt-4 flex justify-center">
-    {{ $tweets->withQueryString()->links() }}
-</div>
-
-
-
-            </div>
         </div>
 
 

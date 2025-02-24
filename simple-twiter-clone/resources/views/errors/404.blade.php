@@ -1,19 +1,19 @@
 @extends('layout.layout')
-@section('content')
+@section(section: 'content')
 
-<div class="flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-800 px-6 py-12">
+<div class="flex flex-col items-center justify-center h-screen  dark:bg-gray-800 px-6 py-12">
     <div class="text-center max-w-lg w-full">
         <!-- Error Code -->
-        <h1 class="text-9xl font-extrabold text-red-600 dark:text-red-500">404</h1>
+        <h1 class="text-6xl font-extrabold text-red-600 dark:text-red-500">404</h1>
         
         <!-- Error Message -->
         <p class="text-xl text-gray-700 dark:text-gray-300 mt-4 font-medium">
-            Oops! The page you are looking for doesn’t exist or has been moved.
+            Oops! The page you are looking for doesn't exist.
         </p>
         
         <!-- Illustration or Icon (optional for visual appeal) -->
         <div class="mt-8 mb-6">
-            <img src="https://www.svgrepo.com/show/343402/404-error.svg" alt="404 Illustration" class="w-48 h-48 mx-auto opacity-75">
+            <img src="https://www.wp-assistance.fr/files/2023/05/erreur-404-WordPress.jpg" alt="404 Illustration" class="w-52 h-52 mx-auto opacity-75">
         </div>
         
         <!-- Call to Action Button -->
@@ -29,3 +29,4 @@
         </div>
     </div>
 </div>
+@endsection

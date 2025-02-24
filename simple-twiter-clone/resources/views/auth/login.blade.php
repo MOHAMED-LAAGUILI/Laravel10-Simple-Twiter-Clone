@@ -37,7 +37,8 @@
             Form -->
 
     <!-- Login Form -->
-<div id="login-form" class="w-full max-w-md p-8 space-y-6 bg-gray-800 rounded-xl shadow-2xl transition-all duration-300">
+    <div id="login-form" class="w-full max-w-md p-8 space-y-6 bg-gray-800 rounded-xl shadow-2xl transition-all duration-300">
+    @include('shared.Alert_Message')
     <h2 class="text-3xl font-extrabold text-center text-white">Welcome Back</h2>
     <p class="text-center text-sm text-gray-400">Sign in to continue</p>
 
@@ -47,12 +48,18 @@
             <label class="block mb-1 text-sm font-medium text-white">Email</label>
             <input name="email" type="email"
                 class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg outline-none transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500">
-        </div>
+                @error('email')
+                <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
+            </div>
         <div>
             <label class="block mb-1 text-sm font-medium text-white">Password</label>
             <input name="password" type="password"
                 class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg outline-none transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500">
-        </div>
+                @error('password')
+                <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
+            </div>
         <button type="submit"
             class="w-full p-3 bg-indigo-500 text-white font-semibold rounded-lg shadow-lg transition-all duration-300 hover:bg-indigo-600">
             Login
@@ -61,7 +68,7 @@
 
     <p class="mt-4 text-center text-sm text-white">
         Don't have an account?
-        <a href="#" id="toggle-register"
+        <a href="{{route('register.show')}}" id="toggle-register"
             class="text-indigo-400 hover:text-indigo-300 transition-all duration-200">Register</a>
     </p>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tweet;
+use App\Models\User;
 
 
 class DashboardController extends Controller
@@ -11,7 +12,7 @@ class DashboardController extends Controller
     public function index(Tweet $tweet)
     {
     $tweets = $tweet->orderBy("created_at", "DESC");
-    
+
     if (request()->has('search')) {
         $tweets =  $tweets->where('content','like' , '%'. request()->get('search','') . '%');
     }

@@ -21,6 +21,7 @@ class Tweet extends Model
 
     // Specifies the fields that can be mass-assigned
     protected $fillable = [
+        'user_id',
         'content', // Stores the tweet's text
         'likes',   // Stores the number of likes
     ];
@@ -37,6 +38,11 @@ class Tweet extends Model
      */
     public function comments()
     {
-        return $this->hasMany(Comment::class, "tweet_id", "id");
+        return $this->hasMany(Comment::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
