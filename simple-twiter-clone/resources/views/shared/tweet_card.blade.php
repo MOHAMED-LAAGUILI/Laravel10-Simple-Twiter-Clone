@@ -7,7 +7,10 @@
             alt="User">
 
         <div>
-            <h4 class="font-bold text-gray-200 truncate">{{$tweet->user->name}}</h4>
+            <h4 class="font-bold text-gray-200 truncate">
+              
+                    {{$tweet->user->name}}
+            </h4>
             <span class="text-gray-400 text-sm">{{'@'.$tweet->user->name}} · {{ $tweet->created_at->diffForHumans() }}</span>
         </div>
     </div>
@@ -69,19 +72,28 @@
 
     </div>
 
-    <!-- Demo Comments Section -->
-    <div class="mt-4 border-t border-gray-600 pt-4">
-        <h5 class="text-gray-400 text-sm mb-2">Comments:</h5>
-        @foreach ($tweet->comments as $comment)
-        <div class="text-gray-300 text-sm mb-2">
-            {{ $comment->created_at }} 
-            <br>
-            {{$tweet->user->name}}: {{ $comment->content }}
-        </div>
-    @endforeach
+<!-- Comments Section -->
+<div class="mt-4 border-t border-gray-600 pt-4">
+    <h5 class="text-gray-400 text-sm mb-3 font-semibold">Comments</h5>
     
+    @foreach ($tweet->comments as $comment)
+    <div class="flex items-start space-x-3 p-3 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 transition">
+        <!-- User Avatar -->
+        <img src="https://api.dicebear.com/9.x/adventurer/svg?seed={{ $comment->user->name }}" 
+             class="w-12 h-12 rounded-full border-2 border-gray-500" alt="User Avatar">
         
+        <!-- Comment Content -->
+        <div>
+            <div class="text-gray-200 font-medium">{{ $comment->user->name }}</div>
+            <div class="text-gray-400 text-xs">{{ $comment->created_at->diffForHumans() }}</div>
+            <p class="text-gray-300 text-sm mt-1">{{ $comment->content }}</p>
+        </div>
     </div>
+    @endforeach
+</div>
+
+
+
 </div>
 
 

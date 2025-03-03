@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //Dashboard route
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 
 // Auth Routes

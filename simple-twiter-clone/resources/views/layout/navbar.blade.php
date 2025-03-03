@@ -440,7 +440,7 @@ const sidebarHandler = (check) => {
                 <li>
                     <form method="post" action="{{route('logout')}}" class="block py-2 transition">
                         @csrf
-                        <button type="submit">
+                        <button type="submit" class="text-white">
                             logout
                         </button>
                     </form>
