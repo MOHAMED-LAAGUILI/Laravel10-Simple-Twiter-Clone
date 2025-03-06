@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeEmail;
 use App\Models\Auth;
 use App\Http\Requests\StoreAuthRequest;
 use App\Http\Requests\UpdateAuthRequest;
 use App\Models\User;
 use Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -40,8 +42,7 @@ class AuthController extends Controller
     }
     
 
-   
-    public function store(User $user)
+    public function store()
     {
         // Validate input
         $validated = request()->validate([
@@ -49,14 +50,19 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:8|max:20'
         ]);
-
+    
         // Hash the password before storing
         $validated['password'] = Hash::make($validated['password']);
-
-        $user->create($validated);
+    
+        // Create the user and store it in a variable
+        $user = User::create($validated);
+    
+        // Now send the welcome email using the newly created user's email
+        Mail::to($user->email)->send(new WelcomeEmail($user));
+    
         return redirect()->route('login.show')->with('success', 'Account created successfully!');
-
     }
+    
 
 
     public function logout(User $user)

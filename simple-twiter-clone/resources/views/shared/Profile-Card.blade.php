@@ -1,8 +1,7 @@
 <div class="dark:bg-white bg-gray-900 shadow-lg rounded-2xl p-8 transition-all duration-300 ease-in-out">
     <!-- Profile Header -->
     <div class="flex items-center space-x-5">
-        <img src="https://api.dicebear.com/9.x/adventurer/svg?seed={{ auth()->user()->name }}"
-             alt="User Avatar"
+        <img src="{{ Storage::url($user->image) ?? 'https://api.dicebear.com/9.x/adventurer/svg?seed=' . auth()->user()->name }}" alt="User Image"
              class="w-20 h-20 rounded-full border-4 border-gray-500 dark:border-gray-200 shadow-md">
         <div>
             <h2 class="text-2xl font-bold text-gray-50 dark:text-gray-900">{{ auth()->user()->name }}</h2>

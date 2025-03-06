@@ -9,9 +9,9 @@ use App\Models\User;
 class DashboardController extends Controller
 {
 
-    public function index(Tweet $tweet)
+    public function index()
     {
-    $tweets = $tweet->orderBy("created_at", "DESC");
+    $tweets = Tweet::orderBy("created_at", "DESC");
 
     if (request()->has('search')) {
         $tweets =  $tweets->where('content','like' , '%'. request()->get('search','') . '%');

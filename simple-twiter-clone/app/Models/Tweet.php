@@ -32,10 +32,10 @@ class Tweet extends Model
         'likes' => 0, // Default likes count
     ];
 
-    /**
-     * Define a one-to-many relationship with the Comment model.
-     * A tweet can have multiple comments.
-     */
+
+    protected $with = ['user:id,name,image', 'comments:id,content'];
+
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
